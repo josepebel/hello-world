@@ -189,7 +189,7 @@ public class Main {
     }
 
     public static String greater(String name){
-        return "Salut" + name;
+        return "Hola" + name;
     }
 
 }
