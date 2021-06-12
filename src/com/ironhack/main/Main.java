@@ -102,7 +102,7 @@ public class Main {
         do {
             System.out.println(names[i++]);
         } while (i < names.length);
-        // Verificas la condición al final lo que significa que al menos se va a ejecutar una vez
+        // Verificas la condición, lo que significa que al menos se va a ejecutar una vez
 
         Arrays.stream(names).forEach(System.out::println); // Streams
         Arrays.stream(names).forEach(name -> System.out.println(name)); // Arrow Functions en Java
