@@ -156,6 +156,8 @@ public class Main {
 //            System.out.println(elements2[index]);
 //        }
 
+
+        System.out.println(hello("Jose"));
     }
 
 
@@ -184,6 +186,10 @@ public class Main {
             result[i - 1] = elements[elements.length - i];
             i--;
         }
+    }
+
+    public static String hello(String name){
+        return "Hello" + name;
     }
 
 }
