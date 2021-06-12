@@ -1,10 +1,14 @@
 package com.ironhack.main;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         System.out.println("Hello world 2");
         long var2 = 23l;
@@ -157,7 +161,69 @@ public class Main {
 //        }
 
 
-        System.out.println(greater("Jose"));
+//        System.out.println(greater("Jose"));
+//
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.println("Introduce your name:");
+//        String name = scanner.nextLine();
+//        System.out.println("Hello " + name);
+//
+//        int age;
+//
+//        do{
+//            System.out.println("Introduce your age:");
+//            age = scanner.nextInt();
+//        } while(age < 0);
+//
+//        if (age < 18) {
+//            System.err.println("Forbidden access");
+//        } else {
+//            System.out.println("Access granted");
+//        }
+
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduce your sentence:");
+        String sentence = scanner.nextLine();
+        System.out.println(countWords(sentence));
+
+        scanner.close();
+
+        FileWriter writer = new FileWriter("demo.txt",true);
+        writer.write("Hola mundo \n");
+        writer.write("Hola linea 2 \n");
+        writer.close();
+
+        File file = new File("demo.txt");
+        Scanner filescanner = new Scanner(file);
+
+        while(filescanner.hasNextLine()){
+            String line = filescanner.nextLine();
+
+        }
+
+        File csvFile = new File("oscar_age_female.csv");
+        Scanner csvFileScanner = new Scanner(csvFile);
+        FileWriter resultFile = new FileWriter("result.txt");
+
+        while(csvFileScanner.hasNextLine()){
+            String line = csvFileScanner.nextLine();
+            String[] dataMovie = line.split(", ");
+
+
+
+            resultFile.write("Name: " + dataMovie[3] + "\n");
+            resultFile.write("Year: " + dataMovie[1] + "\n");
+            resultFile.write("Age: "+ dataMovie[2] + "\n");
+            resultFile.write("Movie: " + dataMovie[4] + "\n");
+            resultFile.write("========================\n");
+        }
+
+        resultFile.close();
+
+
+
     }
 
 
@@ -190,6 +256,47 @@ public class Main {
 
     public static String greater(String name){
         return "Hola" + name;
+    }
+
+    public static int countWords(String sentence){
+        String[] vocals = {"a", "e", "i", "o", "u"};
+        String[] words = sentence.split(" ");
+        String[] wordsVocals = new String[0];
+
+
+
+
+        for (int word = 0; word < words.length; word++) {
+            for (int vocal = 0; vocal < vocals.length; vocal++) {
+                if (words[word].toLowerCase().startsWith(vocals[vocal])) {
+
+                    String newVocalWord = words[word];
+                    wordsVocals = Arrays.copyOf(wordsVocals, wordsVocals.length + 1);
+                    wordsVocals[wordsVocals.length - 1] = newVocalWord;
+
+                }
+            }
+
+        }
+
+        for (int i = 0; i < words.length; i++) {
+            boolean isWordIn = false;
+            for (int j = 0; j < wordsVocals.length; j++) {
+
+                if (words[i] == wordsVocals[j]){
+                    isWordIn = true;
+                    continue;
+                }
+            }
+
+            if(!isWordIn){
+                System.err.println(words[i]);
+            }
+        }
+
+
+        return wordsVocals.length;
+
     }
 
 }
