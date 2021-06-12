@@ -157,7 +157,7 @@ public class Main {
 //        }
 
 
-        System.out.println(hello("Jose"));
+        System.out.println(greater("Jose"));
     }
 
 
@@ -188,7 +188,7 @@ public class Main {
         }
     }
 
-    public static String hello(String name){
+    public static String greater(String name){
         return "Hello" + name;
     }
 
